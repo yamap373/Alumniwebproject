@@ -1,0 +1,100 @@
+{% extends "alumni/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<div style="margin:auto 20%">
+
+<div class="profile-section" style="padding-top:50px;">
+
+    <div class="profile-container" style="display: flex; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); align-items: flex-start;">
+        
+        <div class="profile-picture" style="flex: 1; text-align: center;">
+            <div class="profile-status" style=" padding: 5px 10px; border-radius: 5px; margin-bottom: 10px;">
+                {% if profile.is_alumni%}
+                    <p style="font-weight:bold"> Alumni </p>
+                {% else %}
+                    <p style="font-weight:bold"> Student </p>
+                {% endif %}
+            </div>
+            {% if profile.profile_picture %}
+                <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" style="width: 250px; height: auto; border-radius: 5px;">
+            {% else %}
+                <img src="{% static 'alumni/images/user.png' %}" alt="Default Profile Picture" style="width: 250px; height: auto; border-radius: 5px;">
+            {% endif %}        
+            </div>
+
+        <div class="profile-details" style="flex: 3; padding-left: 30px; margin-top:30px">
+            <h2>{{ profile.first_name }} {{ profile.last_name }} 
+                {% if is_editable %}
+                    <a href="{% url 'edit_profile' user.id %}" class="btn btn-primary">Edit Profile</a>
+                {% endif %}
+            </h2>
+            <p><strong>Current Position:</strong> {{ alumni_user.position }}</p>
+            <p><strong>Current Workplace:</strong> {{ alumni_user.workplace.name }}</p>
+            <p><strong>Bio:</strong> {{ profile.bio }}</p>
+            {% if alumni_user %}
+                {% if alumni_user.mentor_status %}
+                <p><strong>Mentor Status:</strong> Offering Mentorship</p>
+                {% else %}
+                <p><strong>Mentor Status:</strong> Not Offering Mentorship</p>
+                {%endif%}
+            {% endif %}
+            {% if current_student_user %}
+            {% if current_student_user.mentee_status %}
+                <p><strong>Mentee Status:</strong> Looking For Mentorship</p>
+                {% else %}
+                <p><strong>Mentee Status:</strong> Not Looking For Mentorship</p>
+                {%endif%}
+            {% endif %}
+        
+        </div>
+        
+    </div>
+    <div class="about">
+        <h2>About</h2>
+        {% if alumni_user %}
+            <p><strong>Started Year:</strong> {{ alumni_user.started_year }}</p>
+            <p><strong>Graduated Year:</strong> {{ alumni_user.graduated_year }}</p>
+        {% endif %}
+        {% if current_student_user %}
+            <p><strong>Started Year:</strong> {{current_student_user.started_year }}</p>
+        {% endif %}
+    </div>
+
+    <div class="experience">
+        <h2>Experiences</h2>
+        {% if alumni_user.position and alumni_user.workplace.name %}
+            <p><strong>Position:</strong> {{ alumni_user.position }} at {{ alumni_user.workplace.name }}</p>
+        {% elif alumni_user.previous_position %}
+            <p><strong>Previous Position:</strong> {{ alumni_user.previous_position }}</p>
+        {% elif alumni_user.previous_workplace.name %}
+            <p><strong>Previous Position:</strong> at {{ alumni_user.previous_workplace.name }}</p>
+        {% else %}
+            <p>No previous positions recorded.</p>
+        {% endif %}
+    </div>
+
+    {% if profile.show_contact_info %}
+    <div class="contact">
+        <h2>Contact information</h2>
+        <p><strong>Email:</strong> {{ profile.email }}</p>
+        <p><strong>Line:</strong> {{ profile.line }}</p>
+        <p><strong>Phone:</strong> {{ profile.phone_number }}</p>
+        <p><strong>Facebook:</strong> {{ profile.facebook }}</p>
+    </div>
+
+    {% else %}
+    <div class="contact">
+        <h2>Contact Information</h2>
+        <p><strong>Email:</strong> redacted</p>
+        <p><strong>Line:</strong> redacted</p>
+        <p><strong>Phone:</strong> redacted</p>
+        <p><strong>Facebook:</strong> redacted</p>
+    </div>
+    
+    {% endif%}
+</div>
+
+</div>
+{% endblock %}

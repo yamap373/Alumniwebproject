@@ -1,0 +1,34 @@
+{% extends "alumni/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<div style="margin-left:20%;margin-right:20%">
+
+    <header class="events-header">
+    <h1 class = "news-header">News & Stories</h1>
+    <p class= "news-header-desc">"Keep up-to-date with news and stories from our MIS Chula alumni. Find out about our recent activities, professional milestones, and community events. Connect and engage with fellow graduates through our regular updates."</p>
+    </header>
+
+<div>
+    <h2 class="start-news-events">Recent</h2>
+
+</div>
+
+{% for new in news %}
+<div class="news-item">
+    <img src="{{new.main_picture.url}}" alt="News Image 1" style="height:200px; margin-right:20px">
+    <div class="news-info">
+        <p class="news-date">{{new.created}}</p>
+        <h3 class="news-title">{{new.title}}</h3>
+        <p class="news-summary">{{new.description|truncatechars:200 }}</p>
+        <a href="{% url 'news_detail' new.id %}" style="color:black;margin-left:2px">อ่านต่อ...</a>
+    </div>
+</div>
+{%endfor%}
+</div>
+
+</div>
+<div class="my-4"></div>
+
+{% endblock %}

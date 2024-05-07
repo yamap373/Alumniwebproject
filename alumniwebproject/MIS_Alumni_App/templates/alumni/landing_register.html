@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'alumni/css/landing.css' %}">
+</head>
+
+<body>
+<div class="container">
+    <div class="split left">
+      <h1>Alumni</h1>
+      <a href="{% url 'register' %}" class="button">Sign up</a>
+    </div>
+    <div class="split right">
+      <h1>Student</h1>
+      <a href="{% url 'student_register' %}" class="button">Sign up</a>
+    </div>
+  </div>
+
+</body>
+
+<script>
+    const left = document.querySelector(".left");
+const right = document.querySelector(".right");
+const container = document.querySelector(".container");
+
+left.addEventListener("mouseenter", () => {
+  container.classList.add("hover-left");
+});
+
+left.addEventListener("mouseleave", () => {
+  container.classList.remove("hover-left");
+});
+
+right.addEventListener("mouseenter", () => {
+  container.classList.add("hover-right");
+});
+
+right.addEventListener("mouseleave", () => {
+  container.classList.remove("hover-right");
+});
+
+</script>
+
+</html>

@@ -1,0 +1,108 @@
+{% extends "alumni/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="index-header" style="height:250px; display:flex; justify-content:center; align-items:center">
+     <h1 class="alumni-header">Alumni Directory</h1>
+</div>
+
+<div style="height:30px; background-color: rgb(59, 59, 59)">
+
+</div>
+
+<div class="content-container">
+
+<div class="directory-section">
+
+    <div class="container-directory">
+        <div class="search-area">
+            <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'directory' %}">
+                <input class="form-control mr-sm-2" type="text" placeholder="name / workplace" name="q" value="{{ request.GET.q }}">
+    
+                <div class="filter-buttons btn-group" role="group" aria-label="Basic example">
+                    <select class="custom-select mr-sm-2" name="user_type">
+                        <option value="">Status</option>
+                        <option value="alumni" {% if request.GET.user_type == "alumni" %}selected{% endif %}>Alumni</option>
+                        <option value="student" {% if request.GET.user_type == "student" %}selected{% endif %}>Student</option>
+                    </select>
+                    
+                    <select class="custom-select mr-sm-2" name="mentorship_status">
+                        <option value="">Mentorship</option>
+                        <option value="Yes" {% if request.GET.mentorship_status == "Yes" %}selected{% endif %}>Yes</option>
+                        <option value="No" {% if request.GET.mentorship_status == "No" %}selected{% endif %}>No</option>
+                    </select>
+                    
+                    <button type="submit" class="btn btn-outline-secondary">
+                        <img src="{% static 'alumni/images/search-icon.png' %}" alt="Search">
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div style="height:5px ; background-color: rgb(48, 47, 47);">
+</div>
+
+<table class="directory-table">
+   <tr>
+       <th>Profile Picture</th>
+       <th>Name</th>
+       <th>Status</th>
+       <th>Mentorship</th>
+       <th>Grad. Year</th>
+       <th>Position</th>
+       <th>Workplace</th>
+   </tr>
+
+   {% for profile in page_obj reversed %}
+   <tr>
+       <td>
+           {% if profile.user_profile.profile_picture %}
+               <img src="{{ profile.user_profile.profile_picture.url }}" alt="{{ profile.user_profile.first_name }}" class="profile-pic">
+           {% else %}
+               <img src="{% static 'images/default_profile.jpg' %}" alt="Default Profile" class="profile-pic">
+           {% endif %}
+       </td>
+       <td><a href="{% url 'profile' profile.user_profile.user.id %}">{{ profile.user_profile.first_name }} {{ profile.user_profile.last_name }}</a></td>
+       <td>{{ profile.user_profile.is_alumni|yesno:"Alumni,Student" }}</td>
+       {% if profile.user_profile.is_alumni %}
+       <td>{{ profile.mentor_status|yesno:"Yes,No" }}</td>
+       {% else %}
+       <td>{{ profile.mentee_status|yesno:"Yes,No" }}</td>
+       {% endif %}
+       <td>{{ profile.graduated_year|default:profile.started_year }}</td>
+       <td>{{ profile.position }}</td>
+       <td>{{ profile.workplace.name }}</td>
+   </tr>
+   {% endfor %}
+</table>
+<div class="my-4"></div>
+<nav aria-label="Page navigation example">
+ <ul class="pagination justify-content-center">
+   {% if page_obj.has_previous %}
+   <li class="page-item">
+     <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+       <span aria-hidden="true">&laquo;</span>
+       <span class="sr-only">Previous</span>
+     </a>
+   </li>
+   {% endif %}
+   {% for num in page_obj.paginator.page_range %}
+   <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+     <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+   </li>
+   {% endfor %}
+   {% if page_obj.has_next %}
+   <li class="page-item">
+     <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+       <span aria-hidden="true">&raquo;</span>
+       <span class="sr-only">Next</span>
+     </a>
+   </li>
+   {% endif %}
+ </ul>
+</nav>
+<div class="my-4"></div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "alumni/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<div style="margin:auto 20%;">
+
+    <div class = "news-display">
+        <h1>{{ news_item.title }}</h1>
+        <p class="news-date">{{ news_item.created }}</p>
+        <div style="text-align: center;">
+            <img src="{{ news_item.main_picture.url }}" alt="News Main Image" style=" max-height:600px; object-fit:cover;">
+        </div>
+        
+        <p style="margin-top:20px;">{{ news_item.description }}</p>
+    </div>
+    <div style="text-align: center;">
+        <img src="{% static 'alumni/images/news-share.PNG' %}">
+    </div>
+</div>
+
+{% endblock %}
