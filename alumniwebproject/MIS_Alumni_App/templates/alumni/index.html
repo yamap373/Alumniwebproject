@@ -1,0 +1,63 @@
+{% extends "alumni/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="index-header">
+   <div class="index-header-section">
+     <h1 style="display:flex" class ="header-h1">Stay Strong</h1>
+   </div>
+   <div class="index-header-section" style="margin-left:200px;">
+    <h1 style="display:flex">Stay In Touch</h1>
+    </div>
+  <div class="alumni-directory-button">
+    <a class="alumni-directory-button-text" href="{% url 'directory' %}">View Directory</a>
+  </div>
+    
+   </div>
+ </div>
+ <div class="main-news">
+   <div class="main-section">
+    <h1 class="news-title">MIS News</h1>
+    <div class="news-container">
+
+
+        {% for new in news %}
+        <div class="news-item" style="height:250px;">
+            <img src="{{new.main_picture.url}}" alt="News Image 1" style="height:200px; margin-right:20px">
+            <div class="news-info" >
+                <p class="news-date">{{new.created}}</p>
+                <h4 class="news-title">{{new.title|truncatechars:30}}</h4>
+                <p class="news-summary">{{new.description|truncatechars:100 }}</p>
+                <a href="{% url 'news_detail' new.id %}" style="color:black;margin-left:2px">อ่านต่อ...</a>
+            </div>
+        </div>
+        {%endfor%}
+
+  </div>
+  <button class="events-btn"><a class = "events-btn-text" href="{% url 'news'%}">View more news</a></button>
+</div>
+  </div>
+
+
+  <div class="main-events">
+    <div class="main-section">
+        <h1 class="events-title">Upcoming Events</h1>
+        <div class="events-container">
+                {% for event in upcoming_events %}
+                <div class="event">
+                    <p class="event-month">{{ event.start_date|date:"M" }}</p>
+                    <p class="event-date">{{ event.start_date|date:"d" }}</p>
+                    <p class="event-name">{{ event.title }}</p>
+                    <p class="event-full-date">{{ event.start_date|date:"l, F d, Y" }}</p>
+                    <p class="event-organizer">Organizer | {{ event.organizer }}</p>
+                </div>
+                {% empty %}
+                <p>No upcoming events.</p>
+                {% endfor %}
+        </div>
+        <button class="events-btn"><a class="events-btn-text" href="{% url 'event'%}">View more events</a></button>
+    </div>
+</div>
+{% endblock %}
+

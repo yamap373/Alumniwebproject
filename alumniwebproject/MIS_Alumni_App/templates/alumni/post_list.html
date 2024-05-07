@@ -1,0 +1,72 @@
+{% extends "alumni/layout.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#create-post-form').submit(function (event) {
+            event.preventDefault();
+            var form = $(this);
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (data) {
+                    // Alert that the post has been added
+                    alert('Post added successfully!');
+                    // Clear the form fields
+                    form.trigger('reset');
+                    // Reload the page
+                    window.location.reload();
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                    // Example: Display error message
+                    $('#error-messages').text('Failed to create post. Please try again.');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
+
+
+{% block body %}
+
+    <div style="margin-left:20%;margin-right:20%">
+        <div class="my-4"></div>
+        <h2>Create New Post</h2>
+        <form id="create-post-form" action="{% url 'discussions' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="form-group">
+              <label for="content">Content</label>
+              <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Post</button>
+          </form>
+
+    <div>
+        <h2 class="start-news-events">Posts </h2>
+    
+    </div>
+        {% for post in posts reversed %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h5>
+                    <p class="card-text">Author: {{ post.author.user.username }}</p>
+                    <p class="card-text">{{ post.content }}</p>
+                    <p class="card-text"><small class="text-muted">Created: {{ post.created_at }}</small></p>
+                </div>
+          </div>
+        {% endfor %}
+    </div>
+    
+    </div>
+    <div class="my-4"></div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "alumni/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<div style="margin-left:20%;margin-right:20%">
+
+    <header class="events-header">
+        <h1 class = "news-header">Programs & Events</h1>
+        <p class= "news-header-desc">"Discover upcoming programs and events for MIS Chula alumni. Join us for engaging workshops, networking gatherings, and educational seminars designed to enhance professional development and foster meaningful connections among our community members."</p>
+    </header>
+        
+<div>
+    <h2 class="start-news-events">Upcoming Events</h2>
+    <div class="events-events-container">
+
+    
+    {% for event in upcoming_events %}
+    <div class="events-event">
+        <p class="event-month">{{ event.start_date|date:"M" }}</p>
+        <p class="event-date">{{ event.start_date|date:"d" }}</p>
+        <p class="event-name">{{ event.title }}</p>
+        <p class="event-full-date">{{ event.start_date|date:"l, F d, Y" }}</p>
+        <p class="event-organizer">Organizer | {{ event.organizer }}</p>
+    </div>
+    {% empty %}
+    <p>No upcoming events.</p>
+    {% endfor %}
+    </div>
+</div>
+
+<div>
+    <h2>Past Events</h2>
+
+    <div class="events-events-container">
+
+    {% for event in past_events %}
+    <div class="events-event">
+        <p class="event-month">{{ event.start_date|date:"M" }}</p>
+        <p class="event-date">{{ event.start_date|date:"d" }}</p>
+        <p class="event-name">{{ event.title }}</p>
+        <p class="event-full-date">{{ event.start_date|date:"l, F d, Y" }}</p>
+        <p class="event-organizer">Organizer | {{ event.organizer }}</p>
+    </div>
+    </div>
+    {% empty %}
+    <p>No past events.</p>
+    {% endfor %}
+</div>
+</div>
+<div class="my-4"></div>
+{% endblock %}

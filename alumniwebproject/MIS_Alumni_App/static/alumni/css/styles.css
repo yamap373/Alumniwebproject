@@ -1,0 +1,459 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* High z-index to ensure it's on top */
+  background-color: #ffffff; /* or any color you prefer */
+  min-height: 50px;
+
+}
+
+body {
+  padding-top: 50px; /* Adjust this value based on the actual height of your navbar */
+
+}
+
+.navbar-nav {display: flex;
+justify-content: space-between;}
+
+.navbar-brand {
+  justify-content: left;
+}
+
+.nav-link {
+color:black;
+}
+
+a:hover {
+text-decoration: underline;
+text-decoration-style: dashed;
+text-decoration-color: crimson;
+color:black;
+}
+
+.login-btn {
+text-decoration: none;
+padding:0.25rem;
+margin-right:1%;
+border-radius:5px;
+color:black;
+
+}
+
+.webmadewell {
+background-color: white;
+}
+
+.index-header {
+position: relative;
+left: 0;
+top: 0;
+width: 100%;
+height: 600px;  /* Set height to be large enough to show parallax effect */
+background-image: url("https://www.univariety.com/blog/wp-content/uploads/2022/02/5853-min-scaled.jpg");
+background-attachment: fixed;
+background-position: center top; /* Start the image from the bottom */
+background-size: cover;
+background-repeat: no-repeat;
+}
+
+.index-header::before {
+content: "";
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+background-color: rgb(228, 247, 252);
+opacity: 0.3;
+}
+.index-header-section {
+position: relative;
+top:10%;
+max-width: fit-content;
+padding:5px 10px 3px;
+margin-left: 5%;
+margin-top:10px;
+margin-right: auto;
+color: white;
+font-family: "Montserrat", sans-serif;
+letter-spacing: 2px;
+background-color: rgb(55, 54, 54);
+border-radius: 6px;
+}
+
+.alumni-directory-button {
+  position: relative;
+  top:65%;
+  min-width: 120px;
+  margin-left:85%;
+  max-width: fit-content;
+  padding:10px 10px 3px;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 2px;
+  background-color: lightblue;
+  border-radius: 6px
+}
+
+.alumni-directory-button-text {
+color:black;
+text-decoration: none;
+font-size:25px;
+}
+
+
+.header-h1 {
+position:relative;
+font-weight: 500;
+display:flex;
+
+}
+
+.main-section-wrap {
+position: relative;
+background-color: white;
+}
+.main-section {
+position: relative;
+display:flex;
+max-width: 1400px;
+margin-left: auto;
+margin-right: auto;
+padding: 40px;
+flex-direction: column;
+align-items: center;
+}
+
+.news-container {
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-gap: 20px;
+padding: 20px;
+}
+
+.news-item {
+display: flex;
+background-color: #f9f9f9;
+border: 1px solid #ddd;
+padding: 10px;
+}
+
+.news-info {
+flex: 1;
+}
+
+.news-date {
+font-size: 0.85em;
+color: #666;
+}
+
+.news-title {
+margin-bottom: 1rem;
+color: #333;
+align-self: start; /* Ensures alignment at the start of the flex container if the parent is a flexbox */
+text-align: left; /* Aligns text to the left */
+}
+
+.news-summary {
+font-size: 0.9em;
+line-height: 1.4;
+}
+
+.news-btn {
+width: auto; /* Adjust button width as necessary */
+padding: 10px 20px; /* Button padding for better appearance */
+cursor: pointer; /* Changes the cursor to a pointer on hover */
+margin-top: 20px; /* Adds space above the button */
+}
+
+.events-btn {
+width: auto;
+padding: 10px 20px;
+margin-top: 20px;
+cursor: pointer;
+margin-left: auto; /* Centering the button horizontally */
+margin-right: auto; /* Centering the button horizontally */
+display: block; /* Ensuring the button takes full width */
+background-color: lightblue;
+border:none;
+}
+
+.events-btn-text {
+color:black;
+text-decoration: none;
+}
+
+.events-title {
+margin-bottom: 3rem;
+margin-right: 20px;
+color: #ffffff;
+align-self:end; /* Ensures alignment at the start of the flex container if the parent is a flexbox */
+text-align: left;
+}
+
+.main-events {
+background-color: #333;
+}
+
+.events-container {
+padding: 20px;
+width: 1000px; /* Updated width to accommodate both events side by side */
+display: flex; /* Making the container flex to align children side by side */
+justify-content: space-around; /* Space between the two event boxes */
+}
+
+.event {
+width: 30%; /* Each event takes roughly half of the container minus some padding */
+height:300px;
+padding: 20px;
+background-color: #f9f9f9; /* Added background color for each event for better visibility */
+border: 1px solid #ccc; /* Border to distinguish each event box */
+margin: 10px;
+}
+
+
+.event p {
+margin: 4px 0; /* Spacing between paragraphs */
+font-family: Arial, sans-serif; /* Font family */
+}
+
+.event-month, .event-date {
+font-size: 24px;
+color: #333;
+}
+
+.event-name a {
+color: #007BFF; /* Bootstrap primary color for links */
+text-decoration: none; /* Removes underline */
+font-size: 16px;
+}
+
+.event-name a:hover {
+text-decoration: underline; /* Underline on hover for better accessibility */
+}
+
+.event-full-date, .event-organizer {
+font-size: 14px;
+color: #666;
+}
+
+.site-footer {
+width: 100%;
+background-color: #1c1c1c;
+color: white;
+padding: 20px 0;
+text-align: center;
+}
+
+.footer-content {
+margin: 0 auto;
+padding: 20px;
+max-width: 960px;
+}
+
+.footer-content p {
+margin: 5px 0;
+font-size: 16px;
+line-height: 1.6;
+}
+
+.social-links {
+list-style: none;
+padding: 0;
+}
+
+.social-links li {
+display: inline;
+margin-right: 10px;
+}
+
+.social-links a {
+color: #ccc;
+text-decoration: none;
+font-size: 16px;
+}
+
+.social-links a:hover {
+text-decoration: underline;
+color: white;
+}
+
+
+.events-header {
+height:250px; 
+background-color: #dceefa;
+padding-top:50px;
+}
+
+.about-header {
+background-color: #dceefa;
+padding-top:50px;
+display: flex; /* Use flexbox for layout */
+flex-direction: column; /* Stack children vertically */
+align-items: center; /* Center-align items horizontally */
+justify-content: center; /* Center-align items vertically */
+text-align: center; /* Center-align text for each child */
+height: 100%; /* You can set a specific height if needed */
+}
+
+/* About page text styling */
+.about-text, .mission-text {
+line-height: 1.6;
+color: #666;
+}
+
+/* Styling for lists in the 'Our Goals' and 'Our Missions' sections */
+.goals-list, .missions-list {
+padding-left: 20px;
+}
+
+.goal-item, .mission-item {
+margin-bottom: 10px;
+color: #666;
+}
+
+.goal-item strong, .mission-item strong {
+color: #333;
+}
+
+.about-us,.our-goals,.our-missions {
+margin:20px auto;
+}
+
+.news-header {
+  margin-left:30px;
+}
+
+.news-header-desc {
+  margin-top:20px;
+  margin-left:30px;
+  margin-right:30px;
+}
+
+.start-news-events {
+  margin-top:20px;
+}
+
+.news-display {
+  padding-top:50px;
+}
+
+
+.events-events-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.events-event {
+  flex: 1 1 30%; /* Each event takes up about 30% of the flex container width */
+  margin: 10px;
+  border:1px solid #9e9d9d;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: adds shadow for better visibility */
+  padding: 10px;
+  min-width: 280px; /* Optional: prevents the boxes from getting too small on narrow screens */
+}
+
+.alumni-header {
+  font-size:50px;
+  position:relative;
+  color:#313131;
+  text-align: center;
+}
+
+
+.content-container {
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top:30px;
+}
+
+.search-area {
+  display: flex;
+  justify-content: space-between; /* Pushes children to opposite ends */
+  align-items: center; /* Centers items vertically */
+  width: 100%; /* Take full width of the container */
+}
+
+.form-inline {
+  flex-grow: 1; /* Allows the form to take as much space as available */
+}
+
+.filter-buttons {
+  flex-shrink: 0; /* Prevents the buttons from shrinking */
+}
+
+th {
+  border-bottom:1px solid black;
+  padding :10px;
+}
+
+.directory-table {
+  width: 100%;
+  border-collapse: collapse;
+  }
+  
+  .directory-table th, .directory-table td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  }
+
+
+  .directory-table tr {
+    max-height: 100px;
+  }
+  
+  .directory-table th {
+  background-color: #f2f2f2;
+  }
+  
+  .directory-table img {
+  width: 100%; /* Ensure all images are the same size */ 
+  border-collapse: collapse;
+  }
+  
+  .about, .experience, .contact {
+    background-color: #f2f2f2; /* Light gray background for distinction */
+    padding: 20px; /* Padding for spacing inside the div */
+    margin-bottom: 20px; /* Space between sections */
+}
+
+.about p, .experience p {
+    display: flex; /* Enables flexbox for direct children */
+    align-items: center; /* Centers items vertically within each paragraph */
+    margin: 8px 0; /* Consistent vertical spacing */
+}
+
+.about p strong, .experience p strong {
+    min-width: 150px; /* Ensures all labels have the same width */
+    margin-right: 10px; /* Right margin for label separation */
+}
+
+.about h2, .experience h2 {
+    color: #333; /* Dark text for better readability */
+    margin-bottom: 10px; /* Space below the heading */
+}
+
+/* Apply previous CSS rules for the contact section for consistency */
+.contact p {
+    display: flex; /* Makes each paragraph a flex container */
+    align-items: center; /* Centers the content vertically */
+    margin: 8px 0; /* Adds consistent margin around each paragraph */
+}
+
+.contact p strong {
+    min-width: 100px; /* Ensures all labels have the same width */
+    margin-right: 10px; /* Adds a right margin to the labels */
+}
+
+.search-area {
+  margin-bottom:20px;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  object-fit:scale-down;
+  object-position: center top;  /* Center the image at the top */
+}

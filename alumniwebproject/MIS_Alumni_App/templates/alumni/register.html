@@ -1,0 +1,21 @@
+{% extends "alumni/layout.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+
+{% block body %}
+    <div class="px-3">
+        <div class="my-4"></div>
+        <h2>Register for Alumni</h2>
+        <form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    
+    if you are a student click here <a href="{% url 'student_register' %}">Student register</a>
+
+
+{% endblock %} 
